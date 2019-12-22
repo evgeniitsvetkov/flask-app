@@ -1,12 +1,14 @@
 from flask import Flask, render_template
 from flask import request
+import data
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello():
-    return render_template("index.html")
+    output = render_template("index.html", title=data.title, departures=data.departures)
+    return output
 
 
 @app.route('/from/<direction>')

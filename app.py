@@ -14,6 +14,8 @@ def hello():
 @app.route('/from/<direction>')
 def directions(direction):
     output = render_template("direction.html",
+                             title=data.title,
+                             departures=data.departures,
                              direction={"msk": "Из Москвы", "spb": "Из Петербурга", "nsk": "Из Новосибирска",
                                         "ekb": "Из Екатеринбурга", "kazan": "Из Казани"})
     return output
@@ -22,6 +24,8 @@ def directions(direction):
 @app.route('/tours/<id>')
 def tours(id):
     output = render_template("tour.html",
+                             title=data.title,
+                             departures=data.departures,
                              id={1: {"title": "Marina Lake Hotel & Spa", "departure": "nsk"},
                                  2: {"title": "Baroque Hotel", "departure": "ekb"}})
     return output

@@ -18,8 +18,8 @@ def directions(direction):
     output = render_template("direction.html",
                              title=data.title,
                              departures=data.departures,
-                             direction={"msk": "Из Москвы", "spb": "Из Петербурга", "nsk": "Из Новосибирска",
-                                        "ekb": "Из Екатеринбурга", "kazan": "Из Казани"})
+                             direction=direction,
+                             tours=data.tours)
     return output
 
 

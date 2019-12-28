@@ -18,11 +18,18 @@ def hello():
 
 @app.route('/from/<direction>')
 def directions(direction):
+
+    tours_from_direction = []
+    for t in data.tours.values():
+        if t['departure'] == direction:
+            tours_from_direction.append(t)
+
     output = render_template("direction.html",
                              title=data.title,
                              departures=data.departures,
                              direction=direction,
-                             tours=data.tours)
+                             tours=data.tours,    # все туры
+                             tours_from_direction=tours_from_direction)   # только туры по направлению
     return output
 
 

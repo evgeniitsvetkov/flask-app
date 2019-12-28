@@ -9,7 +9,10 @@ app = Flask(__name__)
 def hello():
     output = render_template("index.html",
                              title=data.title,
-                             departures=data.departures)
+                             departures=data.departures,
+                             subtitle=data.subtitle,
+                             description=data.description,
+                             tours=data.tours)
     return output
 
 

@@ -7,7 +7,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    output = render_template("index.html", title=data.title, departures=data.departures)
+    output = render_template("index.html",
+                             title=data.title,
+                             departures=data.departures)
     return output
 
 
@@ -26,8 +28,7 @@ def tours(id):
     output = render_template("tour.html",
                              title=data.title,
                              departures=data.departures,
-                             id={1: {"title": "Marina Lake Hotel & Spa", "departure": "nsk"},
-                                 2: {"title": "Baroque Hotel", "departure": "ekb"}})
+                             tour=data.tours[int(id)])
     return output
 
 

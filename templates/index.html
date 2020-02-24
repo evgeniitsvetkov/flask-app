@@ -13,19 +13,17 @@
 
   <div class="row mt-5">
 
-	  {% for k, tour in tours.items() %}
-	  	{% if loop.index < 7 %}
+	  {% for tour in tours %}
 	      <div class="col-4">
 	          <div class="card mb-3" >
 	          <img src="{{ tour.picture }}" class="card-img-top img-fluid">
 	          <div class="card-body">
 	            <h5 class="card-title">{{ tour.title }}</h5>
-	           <p class="card-text">{{ tour.description|truncate(100) }}</p>
+	           <p class="card-text">{{ tour.description|truncate(70) }}</p>
 	              <a href="/tours/{{ k }}" class="btn btn-sm btn-primary">Подробнее</a>
 	          </div>
 	      </div>
 	      </div>
-	    {% endif %}
 	  {% endfor %}
 
   </div>

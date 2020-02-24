@@ -1,18 +1,28 @@
-from flask import Flask, render_template
-from flask import request
+from random import sample
+from flask import Flask, render_template, request
 import data
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def index():
+
+    # six random tours
+    population = data.tours.keys()
+    sample_ids = sample(population, 6)
+
+    tours_for_index_page = []
+    for tour_id, tour in data.tours.items():
+        if tour_id in sample_ids:
+            tours_for_index_page.append(tour)
+
     output = render_template("index.html",
                              title=data.title,
                              departures=data.departures,
                              subtitle=data.subtitle,
                              description=data.description,
-                             tours=data.tours)
+                             tours=tours_for_index_page)
     return output
 
 

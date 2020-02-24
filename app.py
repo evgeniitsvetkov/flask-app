@@ -8,54 +8,41 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    # six random tours
-    population = data.tours.keys()
-    sample_ids = sample(population, 6)
-
-    tours_for_index_page = []
-    for tour_id, tour in data.tours.items():
-        if tour_id in sample_ids:
-            tours_for_index_page.append(tour)
+    # choose six random tours
+    sample_tours = sample(data.tours.items(), 6)
 
     output = render_template("index.html",
                              title=data.title,
                              departures=data.departures,
                              subtitle=data.subtitle,
                              description=data.description,
-                             tours=tours_for_index_page)
+                             sample_tours=sample_tours)
     return output
 
 
 @app.route('/from/<direction>')
 def directions(direction):
 
-    tours_from_direction = []
-    for t in data.tours.values():
-        if t['departure'] == direction:
-            tours_from_direction.append(t)
+    tours_from_direction = {}
+    for tour_id, tour in data.tours.items():
+        if tour['departure'] == direction:
+            tours_from_direction[tour_id] = tour
 
     output = render_template("direction.html",
                              title=data.title,
                              departures=data.departures,
                              direction=direction,
-                             tours=data.tours,    # все туры
                              tours_from_direction=tours_from_direction)   # только туры по направлению
     return output
 
 
-@app.route('/tours/<id>')
-def tours(id):
+@app.route('/tours/<int:tour_id>')
+def tours(tour_id):
     output = render_template("tour.html",
                              title=data.title,
                              departures=data.departures,
-                             tour=data.tours[int(id)])
+                             tour=data.tours[tour_id])
     return output
-
-
-# роут с дополнительными параметрами, типа ?key=value
-@app.route('/search/')
-def search():
-    return "Выполняем поиск по строке " + request.values.get("s")
 
 
 @app.errorhandler(404)

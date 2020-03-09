@@ -4,11 +4,11 @@
 
   <h1 class="display-5 mt-4">Летим {{ departures[direction] }}</h1>
 
-  {% set min_price = tours_from_direction.values()|min(attribute='price') %}
-  {% set max_price = tours_from_direction.values()|max(attribute='price') %}
-  {% set min_nights = tours_from_direction.values()|min(attribute='nights') %}
-  {% set max_nights = tours_from_direction.values()|max(attribute='nights') %}
-  <p class="mb-4">Найдено {{ tours_from_direction.values()|length }} туров, от {{ min_price.price }} до {{ max_price.price }} и от {{ min_nights.nights }} ночей до {{ max_nights.nights }} ночей</p>
+  {% set min_price_tour = tours_from_direction.values()|min(attribute='price') %}
+  {% set max_price_tour = tours_from_direction.values()|max(attribute='price') %}
+  {% set min_nights_tour = tours_from_direction.values()|min(attribute='nights') %}
+  {% set max_nights_tour = tours_from_direction.values()|max(attribute='nights') %}
+  <p class="mb-4">Найдено {{ tours_from_direction.values()|length }} туров, от {{ min_price_tour.price }} до {{ max_price_tour.price }} и от {{ min_nights_tour.nights }} ночей до {{ max_nights_tour.nights }} ночей</p>
 
   <!-- CARDS -->
 

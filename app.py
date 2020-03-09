@@ -32,7 +32,7 @@ def directions(direction):
                              title=data.title,
                              departures=data.departures,
                              direction=direction,
-                             tours_from_direction=tours_from_direction)   # только туры по направлению
+                             tours_from_direction=tours_from_direction)
     return output
 
 
